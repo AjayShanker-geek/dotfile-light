@@ -1,7 +1,7 @@
 
 set nocompatible
 
-""" Config for OneDark
+""" Config for OneDark in Iterm (Showing the correct colour)
 "Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
@@ -18,8 +18,24 @@ if (empty($TMUX))
   endif
 endif
 
+ """ Startify Startup UI
 
-let g:startify_padding_left = 80 " Hard coded padding for lists
+let g:startify_custom_header = [
+		\ '         _            _                  _       ', 
+		\ '        /\ \     _   /\_\               / /\     ', 
+		\ '       /  \ \   /\_\/ / /         _    / /  \    ', 
+		\ '      / /\ \ \_/ / /\ \ \__      /\_\ / / /\ \__ ', 
+		\ '     / / /\ \___/ /  \ \___\    / / // / /\ \___\', 
+		\ '    / / /  \/____/    \__  /   / / / \ \ \ \/___/', 
+		\ '   / / /    / / /     / / /   / / /   \ \ \      ', 
+		\ '  / / /    / / /     / / /   / / /_    \ \ \     ', 
+		\ ' / / /    / / /     / / /___/ / //_/\__/ / /     ', 
+		\ '/ / /    / / /     / / /____\/ / \ \/___/ /      ', 
+		\ '\/_/     \/_/      \/_________/   \_____\/       ', 
+		\ '                                                 ', 
+		\]
+
+" let g:startify_padding_left = 80 " Hard coded padding for lists
 
 call plug#begin('~/.vim/plugged')
 
@@ -37,29 +53,32 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plugin outside ~/.vim/plugged with post-update hook
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+" Recommended by Prof
 Plug 'scrooloose/syntastic'
+
+
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Multiple Cursor
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 Plug 'mbbill/undotree'
-Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdcommenter'
 Plug 'haya14busa/incsearch.vim'
-Plug 'hecal3/vim-leader-guide'
 
 " Theme
 Plug 'joshdick/onedark.vim'
-Plug 'dracula/vim'
 Plug 'sheerun/vim-polyglot'
 
 Plug 'wfxr/minimap.vim'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'yuttie/comfortable-motion.vim'
-Plug 'wincent/command-t'
-Plug 'bagrat/vim-buffet'
+" Plug 'bagrat/vim-buffet'
+Plug 'voldikss/vim-floaterm'
+Plug 'liuchengxu/vim-which-key'
 
 " Initialize plugin system
 call plug#end()
@@ -82,6 +101,7 @@ set shiftwidth=2
 set mouse=a " activate mouse
  " set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256 
+set timeoutlen=300
 set background=dark
 set expandtab
 highlight Normal ctermbg=NONE
@@ -235,37 +255,149 @@ let g:NERDToggleCheckAllLines = 1
 
 """ Smooth Scroll
 
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
+let g:comfortable_motion_no_default_key_mappings = 1
+let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
+nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
+
 
 """ Key Bindings
 
-""" Must have
+" Quit 
 imap jj <Esc>
 
+imap jk <Esc>
+imap kj <Esc>
 
+" Pairing braces
+inoremap <> <><Left>
+inoremap () ()<Left>
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap "" ""<Left>
+inoremap '' ''<Left>
+inoremap `` ``<Left>
+
+" Nav
+" nmap <Up>    <Nop>
+" nmap <Down>  <Nop>
+" nmap <Left>  <Nop>
+" nmap <Right> <Nop>
+
+:nmap <C-S-tab> :tabprevious<cr>
+:nmap <C-tab> :tabnext<cr>
+:nmap <C-t> :tabnew<cr>
+:map <C-t> :tabnew<cr>
+:map <C-S-tab> :tabprevious<cr>
+:map <C-tab> :tabnext<cr>
+:map <C-w> :tabclose<cr>
+:imap <C-S-tab> <ESC>:tabprevious<cr>i
+:imap <C-tab> <ESC>:tabnext<cr>i
+:imap <C-t> <ESC>:tabnew<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search visually selected text
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap * :<C-u>call <SID>VSetSearch()<CR>/<CR>
+vmap # :<C-u>call <SID>VSetSearch()<CR>?<CR>
+
+func! s:VSetSearch()
+	let temp = @@
+	norm! gvy
+	let @/ = '\V' . substitute(escape(@@, '\'), '\n', '\\n', 'g')
+	let @@ = temp
+endf
 
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-""" vim-buffet
-nmap <leader>1 <Plug>BuffetSwitch(1)
-nmap <leader>2 <Plug>BuffetSwitch(2)
-nmap <leader>3 <Plug>BuffetSwitch(3)
-nmap <leader>4 <Plug>BuffetSwitch(4)
-nmap <leader>5 <Plug>BuffetSwitch(5)
-nmap <leader>6 <Plug>BuffetSwitch(6)
-nmap <leader>7 <Plug>BuffetSwitch(7)
-nmap <leader>8 <Plug>BuffetSwitch(8)
-nmap <leader>9 <Plug>BuffetSwitch(9)
-nmap <leader>0 <Plug>BuffetSwitch(10)
+
+
+""" vim-floaterm
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
+
+
+ """ WhichKey
+
+ " Map leader to which_key
+nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
+
+" Create map to add keys to
+let g:which_key_map =  {}
+" Define a separator
+let g:which_key_sep = '→'
+" set timeoutlen=100
+
+
+" Not a fan of floating windows for this
+let g:which_key_use_floating_win = 0
+
+" Change the colors if you want
+highlight default link WhichKey          Operator
+highlight default link WhichKeySeperator DiffAdded
+highlight default link WhichKeyGroup     Identifier
+highlight default link WhichKeyDesc      Function
+
+" Hide status line
+autocmd! FileType which_key
+autocmd  FileType which_key set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+
+" Single mappings
+let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
+let g:which_key_map['t'] = [ ':NERDTreeToggle'  , 'tree' ]
+" let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
+let g:which_key_map['f'] = [ ':Files'                     , 'search files' ]
+let g:which_key_map['h'] = [ '<C-W>s'                     , 'split below']
+let g:which_key_map['r'] = [ ':Ranger'                    , 'ranger' ]
+let g:which_key_map['S'] = [ ':Startify'                  , 'start screen' ]
+let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
+let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
+" let g:which_key_map['z'] = [ 'Goyo'                       , 'zen' ]
+
+" s is for search
+let g:which_key_map.s = {
+      \ 'name' : '+search' ,
+      \ '/' : [':History/'     , 'history'],
+      \ ';' : [':Commands'     , 'commands'],
+      \ 'a' : [':Ag'           , 'text Ag'],
+      \ 'b' : [':BLines'       , 'current buffer'],
+      \ 'B' : [':Buffers'      , 'open buffers'],
+      \ 'c' : [':Commits'      , 'commits'],
+      \ 'C' : [':BCommits'     , 'buffer commits'],
+      \ 'f' : [':Files'        , 'files'],
+      \ 'g' : [':GFiles'       , 'git files'],
+      \ 'G' : [':GFiles?'      , 'modified git files'],
+      \ 'h' : [':History'      , 'file history'],
+      \ 'H' : [':History:'     , 'command history'],
+      \ 'l' : [':Lines'        , 'lines'] ,
+      \ 'm' : [':Marks'        , 'marks'] ,
+      \ 'M' : [':Maps'         , 'normal maps'] ,
+      \ 'p' : [':Helptags'     , 'help tags'] ,
+      \ 'P' : [':Tags'         , 'project tags'],
+      \ 's' : [':Snippets'     , 'snippets'],
+      \ 'S' : [':Colors'       , 'color schemes'],
+      \ 't' : [':Rg'           , 'text Rg'],
+      \ 'T' : [':BTags'        , 'buffer tags'],
+      \ 'w' : [':Windows'      , 'search windows'],
+      \ 'y' : [':Filetypes'    , 'file types'],
+      \ 'z' : [':FZF'          , 'FZF'],
+      \ }
+
+" Register which key map
+call which_key#register('<Space>', "g:which_key_map")
+
+
+" vim buffert
 noremap <Tab> :bn<CR>
 noremap <S-Tab> :bp<CR>
 noremap <Leader><Tab> :Bw<CR>
 noremap <Leader><S-Tab> :Bw!<CR>
 noremap <C-t> :tabnew split<CR>
-
-
-
-
