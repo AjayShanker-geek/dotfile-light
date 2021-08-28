@@ -67,18 +67,24 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdcommenter'
 Plug 'haya14busa/incsearch.vim'
-
 " Theme
 Plug 'joshdick/onedark.vim'
 Plug 'sheerun/vim-polyglot'
 
-Plug 'wfxr/minimap.vim'
+" Plug 'wfxr/minimap.vim'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'yuttie/comfortable-motion.vim'
 " Plug 'bagrat/vim-buffet'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-which-key'
+
+
+" Color Brackets
+" Plug 'luochen1990/rainbow'
+
+" Indentline
+Plug 'Yggdroot/indentLine'
 
 " Initialize plugin system
 call plug#end()
@@ -110,11 +116,14 @@ highlight nonText ctermbg=NONE
 """ Config for minimap
 let g:minimap_auto_start = 1
 
+""" Change Cursor in different mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+
 " Show matching brackets when text indicator is over them
+let g:rainbow_active = 1 
 set showmatch
 
 " Return to last edit position when opening files (You want this!)
@@ -267,13 +276,12 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impu
 
 " Quit 
 imap jj <Esc>
-
 imap jk <Esc>
 imap kj <Esc>
 
-" Pairing braces
-inoremap <> <><Left>
-inoremap () ()<Left>
+" Pairing braces 
+inoremap <> <><Left> 
+inoremap () ()<Left> 
 inoremap {} {}<Left>
 inoremap [] []<Left>
 inoremap "" ""<Left>
