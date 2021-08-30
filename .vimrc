@@ -6,34 +6,34 @@ set nocompatible
 "If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
 "(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
 if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
+	if (has("nvim"))
+		"For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+		let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+	endif
+	"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+	"Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+	" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+	if (has("termguicolors"))
+		set termguicolors
+	endif
 endif
 
- """ Startify Startup UI
+""" Startify Startup UI
 
 let g:startify_custom_header = [
-		\ '         _            _                  _       ', 
-		\ '        /\ \     _   /\_\               / /\     ', 
-		\ '       /  \ \   /\_\/ / /         _    / /  \    ', 
-		\ '      / /\ \ \_/ / /\ \ \__      /\_\ / / /\ \__ ', 
-		\ '     / / /\ \___/ /  \ \___\    / / // / /\ \___\', 
-		\ '    / / /  \/____/    \__  /   / / / \ \ \ \/___/', 
-		\ '   / / /    / / /     / / /   / / /   \ \ \      ', 
-		\ '  / / /    / / /     / / /   / / /_    \ \ \     ', 
-		\ ' / / /    / / /     / / /___/ / //_/\__/ / /     ', 
-		\ '/ / /    / / /     / / /____\/ / \ \/___/ /      ', 
-		\ '\/_/     \/_/      \/_________/   \_____\/       ', 
-		\ '                                                 ', 
-		\]
+			\ '         _            _                  _       ', 
+			\ '        /\ \     _   /\_\               / /\     ', 
+			\ '       /  \ \   /\_\/ / /         _    / /  \    ', 
+			\ '      / /\ \ \_/ / /\ \ \__      /\_\ / / /\ \__ ', 
+			\ '     / / /\ \___/ /  \ \___\    / / // / /\ \___\', 
+			\ '    / / /  \/____/    \__  /   / / / \ \ \ \/___/', 
+			\ '   / / /    / / /     / / /   / / /   \ \ \      ', 
+			\ '  / / /    / / /     / / /   / / /_    \ \ \     ', 
+			\ ' / / /    / / /     / / /___/ / //_/\__/ / /     ', 
+			\ '/ / /    / / /     / / /____\/ / \ \/___/ /      ', 
+			\ '\/_/     \/_/      \/_________/   \_____\/       ', 
+			\ '                                                 ', 
+			\]
 
 " let g:startify_padding_left = 80 " Hard coded padding for lists
 
@@ -69,6 +69,7 @@ Plug 'preservim/nerdcommenter'
 Plug 'haya14busa/incsearch.vim'
 " Theme
 Plug 'joshdick/onedark.vim'
+Plug 'justinmk/vim-syntax-extra'
 Plug 'sheerun/vim-polyglot'
 
 " Plug 'wfxr/minimap.vim'
@@ -80,7 +81,7 @@ Plug 'liuchengxu/vim-which-key'
 
 
 " Color Brackets
-" Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 
 " Indentline
 Plug 'Yggdroot/indentLine'
@@ -114,7 +115,7 @@ set wrap "Wrap lines
 set smartindent
 set shiftwidth=2
 set mouse=a " activate mouse
- " set backspace=indent,eol,start                                    " More powerful backspacing
+" set backspace=indent,eol,start                                    " More powerful backspacing
 set t_Co=256 
 set timeoutlen=300
 set background=dark
@@ -133,14 +134,20 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 
 " Show matching brackets when text indicator is over them
-let g:rainbow_active = 1 
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\  'guifgs': ['lightblue', 'darkorange2', 'darkcyan',  'firebrick', 'seagreen2', 'magenta'],
+\  'ctermfgs': ['green', 'yellow', 'darkblue', 'magenta'],
+\  
+\ }
+
 set showmatch
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
+			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+			\   exe "normal! g`\"" |
+			\ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -277,15 +284,15 @@ let g:NERDToggleCheckAllLines = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set font according to system
 if has("mac") || has("macunix")
-    set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+	set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
 elseif has("win16") || has("win32")
-    set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+	set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
 elseif has("gui_gtk2")
-    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+	set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
 elseif has("linux")
-    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+	set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
 elseif has("unix")
-    set gfn=Monospace\ 11
+	set gfn=Monospace\ 11
 endif
 
 
@@ -358,9 +365,9 @@ let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
 
 
- """ WhichKey
+""" WhichKey
 
- " Map leader to which_key
+" Map leader to which_key
 nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
@@ -383,7 +390,7 @@ highlight default link WhichKeyDesc      Function
 " Hide status line
 autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
-  \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
+			\| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
 let g:which_key_map['/'] = [ '<Plug>NERDCommenterToggle'  , 'comment' ]
@@ -399,32 +406,32 @@ let g:which_key_map['v'] = [ '<C-W>v'                     , 'split right']
 
 " s is for search
 let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'     , 'history'],
-      \ ';' : [':Commands'     , 'commands'],
-      \ 'a' : [':Ag'           , 'text Ag'],
-      \ 'b' : [':BLines'       , 'current buffer'],
-      \ 'B' : [':Buffers'      , 'open buffers'],
-      \ 'c' : [':Commits'      , 'commits'],
-      \ 'C' : [':BCommits'     , 'buffer commits'],
-      \ 'f' : [':Files'        , 'files'],
-      \ 'g' : [':GFiles'       , 'git files'],
-      \ 'G' : [':GFiles?'      , 'modified git files'],
-      \ 'h' : [':History'      , 'file history'],
-      \ 'H' : [':History:'     , 'command history'],
-      \ 'l' : [':Lines'        , 'lines'] ,
-      \ 'm' : [':Marks'        , 'marks'] ,
-      \ 'M' : [':Maps'         , 'normal maps'] ,
-      \ 'p' : [':Helptags'     , 'help tags'] ,
-      \ 'P' : [':Tags'         , 'project tags'],
-      \ 's' : [':Snippets'     , 'snippets'],
-      \ 'S' : [':Colors'       , 'color schemes'],
-      \ 't' : [':Rg'           , 'text Rg'],
-      \ 'T' : [':BTags'        , 'buffer tags'],
-      \ 'w' : [':Windows'      , 'search windows'],
-      \ 'y' : [':Filetypes'    , 'file types'],
-      \ 'z' : [':FZF'          , 'FZF'],
-      \ }
+			\ 'name' : '+search' ,
+			\ '/' : [':History/'     , 'history'],
+			\ ';' : [':Commands'     , 'commands'],
+			\ 'a' : [':Ag'           , 'text Ag'],
+			\ 'b' : [':BLines'       , 'current buffer'],
+			\ 'B' : [':Buffers'      , 'open buffers'],
+			\ 'c' : [':Commits'      , 'commits'],
+			\ 'C' : [':BCommits'     , 'buffer commits'],
+			\ 'f' : [':Files'        , 'files'],
+			\ 'g' : [':GFiles'       , 'git files'],
+			\ 'G' : [':GFiles?'      , 'modified git files'],
+			\ 'h' : [':History'      , 'file history'],
+			\ 'H' : [':History:'     , 'command history'],
+			\ 'l' : [':Lines'        , 'lines'] ,
+			\ 'm' : [':Marks'        , 'marks'] ,
+			\ 'M' : [':Maps'         , 'normal maps'] ,
+			\ 'p' : [':Helptags'     , 'help tags'] ,
+			\ 'P' : [':Tags'         , 'project tags'],
+			\ 's' : [':Snippets'     , 'snippets'],
+			\ 'S' : [':Colors'       , 'color schemes'],
+			\ 't' : [':Rg'           , 'text Rg'],
+			\ 'T' : [':BTags'        , 'buffer tags'],
+			\ 'w' : [':Windows'      , 'search windows'],
+			\ 'y' : [':Filetypes'    , 'file types'],
+			\ 'z' : [':FZF'          , 'FZF'],
+			\ }
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
@@ -485,8 +492,8 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-  set switchbuf=useopen,usetab,newtab
-  set stal=2
+	set switchbuf=useopen,usetab,newtab
+	set stal=2
 catch
 endtry
 
@@ -506,23 +513,23 @@ vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
+	nmap <D-j> <M-j>
+	nmap <D-k> <M-k>
+	vmap <D-j> <M-j>
+	vmap <D-k> <M-k>
 endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
+	let save_cursor = getpos(".")
+	let old_query = getreg('/')
+	silent! %s/\s\+$//e
+	call setpos('.', save_cursor)
+	call setreg('/', old_query)
 endfun
 
 if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+	autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
 
