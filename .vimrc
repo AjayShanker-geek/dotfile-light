@@ -74,7 +74,6 @@ Plug 'sheerun/vim-polyglot'
 " Plug 'wfxr/minimap.vim'
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'yuttie/comfortable-motion.vim'
 " Plug 'bagrat/vim-buffet'
 Plug 'voldikss/vim-floaterm'
 Plug 'liuchengxu/vim-which-key'
@@ -93,7 +92,6 @@ call plug#end()
 "set backupdir=~/.backup
 syntax on
 let g:onedark_termcolors=256
-set guifont="FiraCode NF"
 colorscheme onedark 
 
 " Enable CursorLine
@@ -102,6 +100,17 @@ filetype on
 set ruler
 set number
 set autoindent
+
+" Use spaces instead of tabs
+set expandtab
+
+" Be smart when using tabs ;)
+set smarttab
+
+set ai "Auto indent
+set si "Smart indent
+set wrap "Wrap lines
+
 set smartindent
 set shiftwidth=2
 set mouse=a " activate mouse
@@ -110,6 +119,7 @@ set t_Co=256
 set timeoutlen=300
 set background=dark
 set expandtab
+" set spell spelllang=en_us
 highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
@@ -262,14 +272,22 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 
 
-""" Smooth Scroll
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => GUI related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set font according to system
+if has("mac") || has("macunix")
+    set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+elseif has("win16") || has("win32")
+    set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+elseif has("gui_gtk2")
+    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+elseif has("linux")
+    set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+elseif has("unix")
+    set gfn=Monospace\ 11
+endif
 
-let g:comfortable_motion_no_default_key_mappings = 1
-let g:comfortable_motion_impulse_multiplier = 1  " Feel free to increase/decrease this value.
-nnoremap <silent> <C-d> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 2)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -2)<CR>
-nnoremap <silent> <C-f> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * 4)<CR>
-nnoremap <silent> <C-b> :call comfortable_motion#flick(g:comfortable_motion_impulse_multiplier * winheight(0) * -4)<CR>
 
 
 """ Key Bindings
@@ -279,31 +297,40 @@ imap jj <Esc>
 imap jk <Esc>
 imap kj <Esc>
 
-" Pairing braces 
-inoremap <> <><Left> 
-inoremap () ()<Left> 
-inoremap {} {}<Left>
-inoremap [] []<Left>
-inoremap "" ""<Left>
-inoremap '' ''<Left>
-inoremap `` ``<Left>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Parenthesis/bracket
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap $1 <esc>`>a)<esc>`<i(<esc>
+vnoremap $2 <esc>`>a]<esc>`<i[<esc>
+vnoremap $3 <esc>`>a}<esc>`<i{<esc>
+vnoremap $$ <esc>`>a"<esc>`<i"<esc>
+vnoremap $q <esc>`>a'<esc>`<i'<esc>
+vnoremap $e <esc>`>a`<esc>`<i`<esc>
+
+" Map auto complete of (, ", ', [
+inoremap $1 ()<esc>i
+inoremap $2 []<esc>i
+inoremap $3 {}<esc>i
+inoremap $4 {<esc>o}<esc>O
+inoremap $q ''<esc>i
+inoremap $e ""<esc>i
 
 " Nav
 " nmap <Up>    <Nop>
 " nmap <Down>  <Nop>
 " nmap <Left>  <Nop>
 " nmap <Right> <Nop>
-
-:nmap <C-S-tab> :tabprevious<cr>
-:nmap <C-tab> :tabnext<cr>
-:nmap <C-t> :tabnew<cr>
-:map <C-t> :tabnew<cr>
-:map <C-S-tab> :tabprevious<cr>
-:map <C-tab> :tabnext<cr>
-:map <C-w> :tabclose<cr>
-:imap <C-S-tab> <ESC>:tabprevious<cr>i
-:imap <C-tab> <ESC>:tabnext<cr>i
-:imap <C-t> <ESC>:tabnew<cr>
+"
+" :nmap <C-S-tab> :tabprevious<cr>
+" :nmap <C-tab> :tabnext<cr>
+" :nmap <C-t> :tabnew<cr>
+" :map <C-t> :tabnew<cr>
+" :map <C-S-tab> :tabprevious<cr>
+" :map <C-tab> :tabnext<cr>
+" :map <C-w> :tabclose<cr>
+" :imap <C-S-tab> <ESC>:tabprevious<cr>i
+" :imap <C-tab> <ESC>:tabnext<cr>i
+" :imap <C-t> <ESC>:tabnew<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search visually selected text
@@ -403,9 +430,110 @@ let g:which_key_map.s = {
 call which_key#register('<Space>', "g:which_key_map")
 
 
-" vim buffert
-noremap <Tab> :bn<CR>
-noremap <S-Tab> :bp<CR>
-noremap <Leader><Tab> :Bw<CR>
-noremap <Leader><S-Tab> :Bw!<CR>
-noremap <C-t> :tabnew split<CR>
+" Control Tabs
+" noremap <Tab> :bn<CR>
+" noremap <S-Tab> :bp<CR>
+" noremap <Leader><Tab> :Bw<CR>
+" noremap <Leader><S-Tab> :Bw!<CR>
+" noremap <C-t> :tabnew split<CR>
+"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Moving around, tabs, windows and buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> \
+map <C-space> /
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" Smart way to move between windows
+" map <C-j> <C-W>j
+" map <C-k> <C-W>k
+" map <C-h> <C-W>h
+" map <C-l> <C-W>l
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>:tabclose<cr>gT
+
+" Close all the buffers
+map <leader>ba :bufdo bd<cr>
+
+map <leader>l :bnext<cr>
+map <leader>h :bprevious<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
+" Return to last edit position when opening files (You want this!)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" Move a line of text using ALT+[jk] or Command+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+if has("mac") || has("macunix")
+  nmap <D-j> <M-j>
+  nmap <D-k> <M-k>
+  vmap <D-j> <M-j>
+  vmap <D-k> <M-k>
+endif
+
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Spell checking
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Pressing ,ss will toggle and untoggle spell checking
+map <leader>ss :setlocal spell!<cr>
+
+" Shortcuts using <leader>
+map <leader>sn ]s
+map <leader>sp [s
+map <leader>sa zg
+map <leader>s? z=
