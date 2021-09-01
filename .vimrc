@@ -118,7 +118,7 @@ highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 
 """ Config for minimap
-let g:minimap_auto_start = 1
+"let g:minimap_auto_start = 1
 
 """ Change Cursor in different mode
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -240,14 +240,14 @@ nnoremap O O<esc>
 
 " You can split the window in Vim by typing :split or :vsplit.
 " Navigate the split view easier by pressing CTRL+j, CTRL+k, CTRL+h, or CTRL+l.
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
+nnoremap <c-j> <c-w>j                      
+nnoremap <c-k> <c-w>k                       
+nnoremap <c-h> <c-w>h                       
+nnoremap <c-l> <c-w>l                       
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Parenthesis/bracket
+" => Parenthesis/bracket                    
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap $1 <esc>`>a)<esc>`<i(<esc>
 vnoremap $2 <esc>`>a]<esc>`<i[<esc>
@@ -297,8 +297,8 @@ inoremap $e ""<esc>i
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"]    = '<C-S-j>'   " new cursor down
 let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
-   
-   
+  
+
 """ vim-floaterm
 let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
@@ -397,10 +397,10 @@ map <C-space> /
 map <silent> <leader><cr> :noh<cr>
 
 " Smart way to move between windows
-" map <C-j> <C-W>j
-" map <C-k> <C-W>k
-" map <C-h> <C-W>h
-" map <C-l> <C-W>l
+"map <C-j> <C-W>j
+"map <C-k> <C-W>k
+"map <C-h> <C-W>h
+"map <C-l> <C-W>l
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>:tabclose<cr>gT
