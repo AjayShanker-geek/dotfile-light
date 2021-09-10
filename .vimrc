@@ -479,12 +479,12 @@ iab com /*<CR><CR>/<Up>
 ab cspl cs1010_print_long(
 ab csrl cs1010_read_long(
 ab csrd cs1010_read_double(
-ab csrl cs1010_read_line(
+ab csrll cs1010_read_line(
 ab csrw cs1010_read_word(
 
 ab csrla cs1010_read_long_array(
 ab csrda cs1010_read_double_array(
-ab csrla cs1010_read_line_array(
+ab csrlla cs1010_read_line_array(
 ab csrwa cs1010_read_word_array(
 
 ab cspld cs1010_println_double(
