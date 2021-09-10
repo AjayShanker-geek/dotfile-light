@@ -74,7 +74,9 @@ Plug 'liuchengxu/vim-which-key'
 
 
 " Color Brackets
-Plug 'luochen1990/rainbow'
+" Plug 'luochen1990/rainbow'
+" Follow Profs
+Plug 'frazrepo/vim-rainbow'
 
 " Indentline
 Plug 'Yggdroot/indentLine'
@@ -84,10 +86,17 @@ Plug 'Raimondi/delimitMate'
 " Initialize plugin system
 call plug#end()
 
-"set backup
-"set backupdir=~/.backup
+" Backup if OS crash
+set backup
+set backupdir=~/.backup
+
 syntax on
 let g:onedark_termcolors=256
+" set t_Co=256 
+" The following should give 16 colors by NUS
+set t_AB=^[[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+set t_AF=^[[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+set t_Co=16
 colorscheme onedark 
 
 " Enable CursorLine
@@ -111,7 +120,6 @@ set smartindent
 set shiftwidth=2
 set mouse=a " activate mouse
 " set backspace=indent,eol,start                                    " More powerful backspacing
-set t_Co=256 
 set timeoutlen=300
 set background=dark
 set expandtab
