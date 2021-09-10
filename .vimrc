@@ -92,11 +92,11 @@ set backupdir=~/.backup
 
 syntax on
 let g:onedark_termcolors=256
-" set t_Co=256 
+set t_Co=256 
 " The following should give 16 colors by NUS
-set t_AB=^[[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
-set t_AF=^[[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
-set t_Co=16
+" set t_AB=^[[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+" set t_AF=^[[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+" set t_Co=16
 colorscheme onedark 
 
 " Enable CursorLine
@@ -159,27 +159,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-"For syntastic
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_c_checkers = [ 'clang_tidy', 'clang' ]
-let g:syntastic_c_compiler = 'clang'
-let g:syntastic_c_clang_args = '-Wall -Werror -Wextra -Iinclude'
-let g:syntastic_c_clang_tidy_args = '-checks=*'
-let g:syntastic_c_compiler_options = '-Wall -Iinclude'
-let g:syntastic_c_include_dirs = [ '../include', 'include' ]
-let g:syntastic_c_clang_tidy_post_args = ""
 
 
 " NERDTree Mappins
@@ -493,3 +472,57 @@ let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
+
+"""
+iab com /*<CR><CR>/<Up>
+
+ab cspl cs1010_print_long(
+ab csrl cs1010_read_long(
+ab csrd cs1010_read_double(
+ab csrl cs1010_read_line(
+ab csrw cs1010_read_word(
+
+ab csrla cs1010_read_long_array(
+ab csrda cs1010_read_double_array(
+ab csrla cs1010_read_line_array(
+ab csrwa cs1010_read_word_array(
+
+ab cspld cs1010_println_double(
+ab cspll cs1010_println_long(
+ab cspls cs1010_println_string(
+
+ab cspd cs1010_print_double(
+ab cspl cs1010_print_long(
+ab csps cs1010_print_string(
+
+ab cscs cs1010_clear_screen(
+
+
+
+""" NOT ALLOWED IN EXAM!!!!
+" For syntastic
+set laststatus=2
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_c_checkers = [ 'clang_tidy', 'clang' ]
+let g:syntastic_c_compiler = 'clang'
+let g:syntastic_c_clang_args = '-Wall -Werror -Wextra -Iinclude'
+let g:syntastic_c_clang_tidy_args = '-checks=*'
+let g:syntastic_c_compiler_options = '-Wall -Iinclude'
+let g:syntastic_c_include_dirs = [ '../include', 'include' ]
+let g:syntastic_c_clang_tidy_post_args = ""
+
+
+
+
+
+
