@@ -48,8 +48,8 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
 " Recommended by Prof
 Plug 'scrooloose/syntastic'
-  
- 
+
+
 Plug 'mhinz/vim-startify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -92,11 +92,11 @@ set backupdir=~/.backup
 
 syntax on
 let g:onedark_termcolors=256
-set t_Co=256 
+" set t_Co=256 
 " The following should give 16 colors by NUS
-" set t_AB=^[[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
-" set t_AF=^[[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
-" set t_Co=16
+set t_AB=^[[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm
+set t_AF=^[[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm
+set t_Co=16
 colorscheme onedark 
 
 " Enable CursorLine
@@ -286,17 +286,17 @@ nnoremap <c-l> <c-w>l
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"]    = '<C-S-j>'   " new cursor down
 let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
-  
+
 
 """ vim-floaterm
 let g:floaterm_keymap_new    = '<F7>'
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
-            
-            
+
+
 """ WhichKey  
-              
+
 " Map leader to which_key
 nnoremap <silent> <leader> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
