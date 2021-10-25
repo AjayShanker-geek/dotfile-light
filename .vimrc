@@ -68,7 +68,6 @@ Plug 'justinmk/vim-syntax-extra'
 
 "" Plug 'wfxr/minimap.vim'
 Plug 'ryanoasis/vim-devicons'
-
 "" Plug 'bagrat/vim-buffet'
 "Plug 'voldikss/vim-floaterm'
 "Plug 'liuchengxu/vim-which-key'
@@ -87,6 +86,7 @@ Plug 'ryanoasis/vim-devicons'
 "" Initialize plugin system
 call plug#end()
 
+packadd! termdebug
 " Backup if OS crash
 set backup
 set backupdir=~/.backup
@@ -108,24 +108,25 @@ set number
 set autoindent
 
 " Use spaces instead of tabs
-set expandtab
+" set expandtab
 
 " Be smart when using tabs ;)
-" set smarttab
+set smarttab
 set smartindent
 
 set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
-
+" set spelllang=en_gb
 set smartindent
+set tapstop=2
 set shiftwidth=2
 set mouse=a " activate mouse
 " set backspace=indent,eol,start                                    " More powerful backspacing
 set timeoutlen=300
 set background=dark
 " set expandtab
-" set spell spelllang=en_us
+set spell spelllang=en_gb
 " highlight Normal ctermbg=NONE
 " highlight nonText ctermbg=NONE
 "
@@ -169,6 +170,11 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Spelling mistakes will be colored up red.
+hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
+hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
 
 " NERDTree Mappins
 " Open Nerd Tree with <Leader>n
@@ -228,21 +234,22 @@ let g:lightline = {
             \ 'inactive' : {
             \   'right' : []
             \   },
-            \ 'tabline': {
-            \   'left': [ ['buffers'] ],
-            \   'right': [ ]
-            \   }
             \ }
 
 let g:lightline.component_raw = {'buffers': 1, 'left_end': 1, 'right_end': 1}
-let g:lightline#bufferline#filename_modifier = ':p:t'
+" let g:lightline#bufferline#filename_modifier = ':p:t'
 let g:lightline#bufferline#read_only = " \uf023"
-let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#min_buffer_count = 1
-let g:lightline#bufferline#unnamed = "New buffer"
+" let g:lightline#bufferline#unicode_symbols = 1
+" let g:lightline#bufferline#min_buffer_count = 1
+" let g:lightline#bufferline#unnamed = "New buffer"
 let g:lightline#bufferline#enable_nerdfont = 1
 let g:lightline#bufferline#clickable = 1
-let g:lightline#bufferline#auto_hide = 2000
+" let g:lightline#bufferline#auto_hide = 2000
+let g:lightline#bufferline#show_number  = 1
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#unnamed      = '[No Name]'
+let g:lightline#bufferline#unicode_symbols = 1
+let g:lightline#bufferline#enable_devicons = 1
 
 
 
@@ -575,13 +582,48 @@ map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 """
-iab com /*<CR><CR>/<Up>
+autocmd BufRead,BufWritePre *.c normal gg=G
 
-ab cspl cs1010_print_long(
+iab com /**
+      \<CR><CR>
+      \
+      \<CR><CR>
+      \@param[in, out] ...
+      \<CR><CR>
+      \@return Returns ...
+      \<CR><CR>
+      \@pre ...
+      \<CR>
+      \/<Up><Up><Up><Up><Up><Up><Up>
+
+iabbrev #i #include 
+iabbrev #d #define  
+iabbrev s struct    
+iabbrev t typedef
+
+autocmd FileType c iabbrev start #include <stdio.h>
+                                     \<CR>
+                                     \#include <stdlib.h>
+                                     \<CR>
+                                     \#include <stdbool.h>
+                                     \<CR>
+                                     \<CR>
+                                     \int main() {
+                                     \<CR>
+                                     \  printf("hello\n");
+                                     \<CR>
+                                     \  return 0;
+                                     \<CR>
+                                     \}
+
+iabbrev fort for (size_t i = 0; i <= NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+iabbrev forl for (long i = 0; i <= NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+
 ab csrl cs1010_read_long(
 ab csrd cs1010_read_double(
 ab csrll cs1010_read_line(
 ab csrw cs1010_read_word(
+ab csrs_t cs1010_read_size_t(
 
 ab csrla cs1010_read_long_array(
 ab csrda cs1010_read_double_array(
@@ -591,10 +633,15 @@ ab csrwa cs1010_read_word_array(
 ab cspld cs1010_println_double(
 ab cspll cs1010_println_long(
 ab cspls cs1010_println_string(
+ab csplp cs1010_println_pointer(
+ab cspls_t cs1010_println_size_t(
 
+ab cspl cs1010_print_long(
 ab cspd cs1010_print_double(
 ab cspl cs1010_print_long(
 ab csps cs1010_print_string(
+ab cspp cs1010_print_pointer(
+ab csps_t cs1010_print_size_t(
 
 ab cscs cs1010_clear_screen(
 
