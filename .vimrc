@@ -86,6 +86,10 @@ Plug 'ryanoasis/vim-devicons'
 "" Initialize plugin system
 call plug#end()
 
+ " Adding debugging
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
+
 packadd! termdebug
 " Backup if OS crash
 set backup
@@ -509,6 +513,8 @@ function! InsertTabWrapper()
 endfunction
 inoremap <expr> <tab> InsertTabWrapper()
 inoremap <s-tab> <c-n>
+inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
 
 
 " Return to last edit position when opening files (You want this!)
@@ -558,17 +564,17 @@ let g:NERDToggleCheckAllLines = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-s>'
-let g:multi_cursor_select_all_word_key = '<A-s>'
-let g:multi_cursor_start_key           = 'g<C-s>'
-let g:multi_cursor_select_all_key      = 'g<A-s>'
-let g:multi_cursor_next_key            = '<C-s>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+" let g:multi_cursor_use_default_mapping=0
+"
+" " Default mapping
+" let g:multi_cursor_start_word_key      = '<C-s>'
+" let g:multi_cursor_select_all_word_key = '<A-s>'
+" let g:multi_cursor_start_key           = 'g<C-s>'
+" let g:multi_cursor_select_all_key      = 'g<A-s>'
+" let g:multi_cursor_next_key            = '<C-s>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -598,10 +604,10 @@ iab com /**
 
 iabbrev #i #include 
 iabbrev #d #define  
-iabbrev s struct    
-iabbrev t typedef
+" iabbrev s struct    
+" iabbrev t typedef
 
-autocmd FileType c iabbrev start #include <stdio.h>
+autocmd FileType c iabbrev cstart #include <stdio.h>
                                      \<CR>
                                      \#include <stdlib.h>
                                      \<CR>
@@ -616,8 +622,8 @@ autocmd FileType c iabbrev start #include <stdio.h>
                                      \<CR>
                                      \}
 
-iabbrev fort for (size_t i = 0; i <= NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
-iabbrev forl for (long i = 0; i <= NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+iabbrev for_t for (size_t i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+iabbrev for_l for (long i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
 
 ab csrl cs1010_read_long(
 ab csrd cs1010_read_double(
