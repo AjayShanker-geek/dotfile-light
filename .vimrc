@@ -174,11 +174,11 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Spelling mistakes will be colored up red.
-hi SpellBad cterm=underline ctermfg=203 guifg=#ff5f5f
-hi SpellLocal cterm=underline ctermfg=203 guifg=#ff5f5f
-hi SpellRare cterm=underline ctermfg=203 guifg=#ff5f5f
-hi SpellCap cterm=underline ctermfg=203 guifg=#ff5f5f
+" Spelling mistakes will be colored up dark red.
+hi SpellBad cterm=underline ctermfg=203 guifg=#a93939
+hi SpellLocal cterm=underline ctermfg=203 guifg=#a93939
+hi SpellRare cterm=underline ctermfg=203 guifg=#a93939
+hi SpellCap cterm=underline ctermfg=203 guifg=#a93939
 
 " NERDTree Mappins
 " Open Nerd Tree with <Leader>n
@@ -312,50 +312,6 @@ vnoremap K :m '<-2<CR>gv=gv
 vnoremap J :m '>+1<CR>gv=gv
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Parenthesis/bracket                    
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-"vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-"vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-"vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-"vnoremap $q <esc>`>a'<esc>`<i'<esc>
-"vnoremap $e <esc>`>a`<esc>`<i`<esc>
-
-" Map auto complete of (, ", ', [
-"inoremap $1 ()<esc>i
-"inoremap $2 []<esc>i
-"inoremap $3 {}<esc>i
-"inoremap $4 {<esc>o}<esc>O
-"inoremap $q ''<esc>i
-"inoremap $e ""<esc>i
-
-" Nav
-" nmap <Up>    <Nop>
-" nmap <Down>  <Nop>
-" nmap <Left>  <Nop>
-" nmap <Right> <Nop>
-"
-" :nmap <C-S-tab> :tabprevious<cr>
-" :nmap <C-tab> :tabnext<cr>
-" :nmap <C-t> :tabnew<cr>
-" :map <C-t> :tabnew<cr>
-" :map <C-S-tab> :tabprevious<cr>
-" :map <C-tab> :tabnext<cr>
-" :map <C-w> :tabclose<cr>
-" :imap <C-S-tab> <ESC>:tabprevious<cr>i
-" :imap <C-tab> <ESC>:tabnext<cr>i
-" :imap <C-t> <ESC>:tabnew<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Search visually selected text
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" map /  <Plug>(incsearch-forward)
-" map ?  <Plug>(incsearch-backward)
-" map g/ <Plug>(incsearch-stay)
-
-" vim-visual
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vim Visual Multi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -442,14 +398,6 @@ let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
 " " Register which key map
 " call which_key#register('<Space>', "g:which_key_map")
 
-
-" Control Tabs
-" noremap <Tab> :bn<CR>
-" noremap <S-Tab> :bp<CR>
-" noremap <Leader><Tab> :Bw<CR>
-" noremap <Leader><S-Tab> :Bw!<CR>
-" noremap <C-t> :tabnew split<CR>
-"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
