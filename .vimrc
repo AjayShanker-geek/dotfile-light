@@ -271,15 +271,15 @@ set noshowmode
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set font according to system
 if has("mac") || has("macunix")
-	set gfn=IBM\ Plex\ Mono:h14,Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+	set gfn=IBM\ Plex\ Mono:h1,Hack:h1,Source\ Code\ Pro:h1,Menlo:h1
 elseif has("win16") || has("win32")
 	set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
 elseif has("gui_gtk2")
-	set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+	set gfn=IBM\ Plex\ Mono\ 1,:Hack\ 1,Source\ Code\ Pro\ 1,Bitstream\ Vera\ Sans\ Mono\ 1
 elseif has("linux")
-	set gfn=IBM\ Plex\ Mono\ 14,:Hack\ 14,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+	set gfn=IBM\ Plex\ Mono\ 1,:Hack\ 1,Source\ Code\ Pro\ 1,Bitstream\ Vera\ Sans\ Mono\ 1
 elseif has("unix")
-	set gfn=Monospace\ 11
+	set gfn=Monospace\ 1
 endif
 
 
@@ -550,10 +550,15 @@ iab com /**
       \<CR>
       \/<Up><Up><Up><Up><Up><Up><Up>
 
-iabbrev #i #include 
+iabbrev #i #include
 iabbrev #d #define  
-" iabbrev s struct    
-" iabbrev t typedef
+iabbrev cslib #include "cs1010.h" 
+iabbrev mathlib #include <math.h>
+iabbrev boollib #include <stdbool.h>
+iabbrev strlib #include <string.h>
+
+iabbrev st struct    
+iabbrev ty typedef
 
 autocmd FileType c iabbrev cstart #include <stdio.h>
                                      \<CR>
@@ -570,8 +575,12 @@ autocmd FileType c iabbrev cstart #include <stdio.h>
                                      \<CR>
                                      \}
 
-iabbrev for_t for (size_t i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
-iabbrev for_l for (long i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+iabbrev forti for (size_t i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+iabbrev forli for (long i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+
+iabbrev fortj for (size_t j = 0; j < NUM; j += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+iabbrev forlj for (long j = 0; j < NUM; j += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+
 
 ab csrl cs1010_read_long(
 ab csrd cs1010_read_double(
