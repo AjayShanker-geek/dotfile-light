@@ -1,2 +1,2 @@
 # vimrc-nus
-My NUS Vim Config
+My Vim Config for Raspberry Pi
