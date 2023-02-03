@@ -21,20 +21,20 @@ endif
 
 """ Startify Startup UI
 
-let g:startify_custom_header = [
-			\ '         _            _                  _       ', 
-			\ '        /\ \     _   /\_\               / /\     ', 
-			\ '       /  \ \   /\_\/ / /         _    / /  \    ', 
-			\ '      / /\ \ \_/ / /\ \ \__      /\_\ / / /\ \__ ', 
-			\ '     / / /\ \___/ /  \ \___\    / / // / /\ \___\', 
-			\ '    / / /  \/____/    \__  /   / / / \ \ \ \/___/', 
-			\ '   / / /    / / /     / / /   / / /   \ \ \      ', 
-			\ '  / / /    / / /     / / /   / / /_    \ \ \     ', 
-			\ ' / / /    / / /     / / /___/ / //_/\__/ / /     ', 
-			\ '/ / /    / / /     / / /____\/ / \ \/___/ /      ', 
-			\ '\/_/     \/_/      \/_________/   \_____\/       ', 
-			\ '                                                 ', 
-			\]
+" let g:startify_custom_header = [
+" 			\ '         _            _                  _       ', 
+" 			\ '        /\ \     _   /\_\               / /\     ', 
+" 			\ '       /  \ \   /\_\/ / /         _    / /  \    ', 
+" 			\ '      / /\ \ \_/ / /\ \ \__      /\_\ / / /\ \__ ', 
+" 			\ '     / / /\ \___/ /  \ \___\    / / // / /\ \___\', 
+" 			\ '    / / /  \/____/    \__  /   / / / \ \ \ \/___/', 
+" 			\ '   / / /    / / /     / / /   / / /   \ \ \      ', 
+" 			\ '  / / /    / / /     / / /   / / /_    \ \ \     ', 
+" 			\ ' / / /    / / /     / / /___/ / //_/\__/ / /     ', 
+" 			\ '/ / /    / / /     / / /____\/ / \ \/___/ /      ', 
+" 			\ '\/_/     \/_/      \/_________/   \_____\/       ', 
+" 			\ '                                                 ', 
+" 			\]
 
 " let g:startify_padding_left = 80 " Hard coded padding for lists
 
@@ -48,7 +48,7 @@ call plug#begin('~/.vim/plugged')
 "" Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 "" Recommended by Prof
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 
 
 "Plug 'mhinz/vim-startify'
@@ -63,11 +63,11 @@ Plug 'scrooloose/syntastic'
 "" Plug 'haya14busa/incsearch.vim'
 "" Theme
 "Plug 'joshdick/onedark.vim'
-Plug 'justinmk/vim-syntax-extra'
+" Plug 'justinmk/vim-syntax-extra'
 "Plug 'sheerun/vim-polyglot'
 
 "" Plug 'wfxr/minimap.vim'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 "" Plug 'bagrat/vim-buffet'
 "Plug 'voldikss/vim-floaterm'
 "Plug 'liuchengxu/vim-which-key'
@@ -92,8 +92,8 @@ let g:termdebug_wide = 163
 
 packadd! termdebug
 " Backup if OS crash
-set backup
-set backupdir=~/.backup
+" set backup
+" set backupdir=~/.backup
 
 syntax on
 let g:onedark_termcolors=256
@@ -145,26 +145,27 @@ set spell spelllang=en_gb
 colorscheme onedark
 
 """ Change Cursor in different mode
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-
-" Show matching brackets when text indicator is over them
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-			\  'guifgs': ['lightblue', 'darkorange2', 'darkcyan',  'firebrick', 'seagreen2', 'magenta'],
-			\  'ctermfgs': ['green', 'yellow', 'darkblue', 'magenta'],
-			\  
-			\ }
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"
+"
+" " Show matching brackets when text indicator is over them
+" let g:rainbow_active = 1
+" let g:rainbow_conf = {
+" 			\  'guifgs': ['lightblue', 'darkorange2', 'darkcyan',  'firebrick', 'seagreen2', 'magenta'],
+" 			\  'ctermfgs': ['green', 'yellow', 'darkblue', 'magenta'],
+" 			\  
+" 			\ }
 
 
 
 " Return to last edit position when opening files (You want this!)
-autocmd BufReadPost *
-			\ if line("'\"") > 0 && line("'\"") <= line("$") |
-			\   exe "normal! g`\"" |
-			\ endif
+" autocmd BufReadPost *
+" 			\ if line("'\"") > 0 && line("'\"") <= line("$") |
+" 			\   exe "normal! g`\"" |
+" 			\ endif
+
 " Remember info about open buffers on close
 set viminfo^=%
 
@@ -182,10 +183,10 @@ hi SpellCap cterm=underline ctermfg=203 guifg=#a93939
 
 " NERDTree Mappins
 " Open Nerd Tree with <Leader>n
-map <Leader>n <esc>:NERDTreeToggle<cr>
+" map <Leader>n <esc>:NERDTreeToggle<cr>
 
 " Reveal current file in NERDTree with <Leader>r
-map <Leader>r <esc>:NERDTreeFind<cr>
+" map <Leader>r <esc>:NERDTreeFind<cr>
 
 "-------------------------------------------------------------
 " AIRLINE
@@ -210,50 +211,50 @@ map <Leader>r <esc>:NERDTreeFind<cr>
 " lightline
 " ------------------------------------------------------------
 
-let g:lightline = {
-            \ 'colorscheme': 'one',
-            \ 'separator' : { 'left': "\xee\x82\xb4", 'right': "\xee\x82\xb6" },
-            \ 'component_function': {
-            \   'cocstatus': 'coc#status',
-            \   'method': 'CocCurrentFunction'
-            \   },
-            \ 'component_expand': {
-            \   'buffers': 'lightline#bufferline#buffers'
-            \   },
-            \ 'component_type': {
-            \   'buffers': 'tabsel',
-            \   },
-            \ 'component': {
-            \   'left_end': "%#LightlineLeft_active_0_1#\xee\x82\xb6%#LightlineLeft_active_0#",
-            \   'right_end': "%#LightlineRight_active_0_1#\xee\x82\xb4%#LightlineRight_active_0#"
-            \   },
-            \ 'component_visible_condition': {
-            \   'left_end': '0',
-            \   'right_end': '0',
-            \   },
-            \ 'active' : {
-            \   'right' : [ [ 'lineinfo', 'method', 'spell', 'method' ], [  'fileencoding', 'fileformat', 'filetype', 'cocstatus'] ],
-            \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
-            \   },
-            \ 'inactive' : {
-            \   'right' : []
-            \   },
-            \ }
-
-let g:lightline.component_raw = {'buffers': 1, 'left_end': 1, 'right_end': 1}
-" let g:lightline#bufferline#filename_modifier = ':p:t'
-let g:lightline#bufferline#read_only = " \uf023"
+" let g:lightline = {
+"             \ 'colorscheme': 'one',
+"             \ 'separator' : { 'left': "\xee\x82\xb4", 'right': "\xee\x82\xb6" },
+"             \ 'component_function': {
+"             \   'cocstatus': 'coc#status',
+"             \   'method': 'CocCurrentFunction'
+"             \   },
+"             \ 'component_expand': {
+"             \   'buffers': 'lightline#bufferline#buffers'
+"             \   },
+"             \ 'component_type': {
+"             \   'buffers': 'tabsel',
+"             \   },
+"             \ 'component': {
+"             \   'left_end': "%#LightlineLeft_active_0_1#\xee\x82\xb6%#LightlineLeft_active_0#",
+"             \   'right_end': "%#LightlineRight_active_0_1#\xee\x82\xb4%#LightlineRight_active_0#"
+"             \   },
+"             \ 'component_visible_condition': {
+"             \   'left_end': '0',
+"             \   'right_end': '0',
+"             \   },
+"             \ 'active' : {
+"             \   'right' : [ [ 'lineinfo', 'method', 'spell', 'method' ], [  'fileencoding', 'fileformat', 'filetype', 'cocstatus'] ],
+"             \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+"             \   },
+"             \ 'inactive' : {
+"             \   'right' : []
+"             \   },
+"             \ }
+"
+" let g:lightline.component_raw = {'buffers': 1, 'left_end': 1, 'right_end': 1}
+" " let g:lightline#bufferline#filename_modifier = ':p:t'
+" let g:lightline#bufferline#read_only = " \uf023"
+" " let g:lightline#bufferline#unicode_symbols = 1
+" " let g:lightline#bufferline#min_buffer_count = 1
+" " let g:lightline#bufferline#unnamed = "New buffer"
+" let g:lightline#bufferline#enable_nerdfont = 1
+" let g:lightline#bufferline#clickable = 1
+" " let g:lightline#bufferline#auto_hide = 2000
+" let g:lightline#bufferline#show_number  = 1
+" let g:lightline#bufferline#shorten_path = 1
+" let g:lightline#bufferline#unnamed      = '[No Name]'
 " let g:lightline#bufferline#unicode_symbols = 1
-" let g:lightline#bufferline#min_buffer_count = 1
-" let g:lightline#bufferline#unnamed = "New buffer"
-let g:lightline#bufferline#enable_nerdfont = 1
-let g:lightline#bufferline#clickable = 1
-" let g:lightline#bufferline#auto_hide = 2000
-let g:lightline#bufferline#show_number  = 1
-let g:lightline#bufferline#shorten_path = 1
-let g:lightline#bufferline#unnamed      = '[No Name]'
-let g:lightline#bufferline#unicode_symbols = 1
-let g:lightline#bufferline#enable_devicons = 1
+" let g:lightline#bufferline#enable_devicons = 1
 
 
 
@@ -270,17 +271,17 @@ set noshowmode
 " => GUI related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set font according to system
-if has("mac") || has("macunix")
-	set gfn=IBM\ Plex\ Mono:h1,Hack:h1,Source\ Code\ Pro:h1,Menlo:h1
-elseif has("win16") || has("win32")
-	set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
-elseif has("gui_gtk2")
-	set gfn=IBM\ Plex\ Mono\ 1,:Hack\ 1,Source\ Code\ Pro\ 1,Bitstream\ Vera\ Sans\ Mono\ 1
-elseif has("linux")
-	set gfn=IBM\ Plex\ Mono\ 1,:Hack\ 1,Source\ Code\ Pro\ 1,Bitstream\ Vera\ Sans\ Mono\ 1
-elseif has("unix")
-	set gfn=Monospace\ 1
-endif
+" if has("mac") || has("macunix")
+" 	set gfn=IBM\ Plex\ Mono:h1,Hack:h1,Source\ Code\ Pro:h1,Menlo:h1
+" elseif has("win16") || has("win32")
+" 	set gfn=IBM\ Plex\ Mono:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+" elseif has("gui_gtk2")
+" 	set gfn=IBM\ Plex\ Mono\ 1,:Hack\ 1,Source\ Code\ Pro\ 1,Bitstream\ Vera\ Sans\ Mono\ 1
+" elseif has("linux")
+" 	set gfn=IBM\ Plex\ Mono\ 1,:Hack\ 1,Source\ Code\ Pro\ 1,Bitstream\ Vera\ Sans\ Mono\ 1
+" elseif has("unix")
+" 	set gfn=Monospace\ 1
+" endif
 
 
 """ Key Bindings
@@ -315,9 +316,9 @@ vnoremap J :m '>+1<CR>gv=gv
 " Vim Visual Multi
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:VM_maps = {}
-let g:VM_maps["Add Cursor Down"]    = '<C-S-j>'   " new cursor down
-let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
+" let g:VM_maps = {}
+" let g:VM_maps["Add Cursor Down"]    = '<C-S-j>'   " new cursor down
+" let g:VM_maps["Add Cursor Up"]      = '<C-S-k>'   " new cursor up
 
 
 " "" vim-floaterm
@@ -491,23 +492,23 @@ endif
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Create default mappings
-let g:NERDCreateDefaultMappings = 1
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
+" let g:NERDCreateDefaultMappings = 1
+" " Add spaces after comment delimiters by default
+" let g:NERDSpaceDelims = 1
+" " Use compact syntax for prettified multi-line comments
+" let g:NERDCompactSexyComs = 1
+" " Align line-wise comment delimiters flush left instead of following code indentation
+" let g:NERDDefaultAlign = 'left'
+" " Set a language to use its alternate delimiters by default
+" let g:NERDAltDelims_java = 1
+" " Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" " Allow commenting and inverting empty lines (useful when commenting a region)
+" let g:NERDCommentEmptyLines = 1
+" " Enable trimming of trailing whitespace when uncommenting
+" let g:NERDTrimTrailingWhitespace = 1
+" " Enable NERDCommenterToggle to check all selected lines is commented or not 
+" let g:NERDToggleCheckAllLines = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
@@ -527,110 +528,110 @@ let g:NERDToggleCheckAllLines = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
-let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-let g:NERDTreeWinSize=35
+" let g:NERDTreeWinPos = "right"
+" let NERDTreeShowHidden=0
+" let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+" let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
 
 """
-autocmd BufRead,BufWritePre *.c normal gg=G
+autocmd BufRead,BufWritePre *.c *.py normal gg=G
 
-iab com /**
-      \<CR><CR>
-      \
-      \<CR><CR>
-      \@param[in, out] ...
-      \<CR><CR>
-      \@return Returns ...
-      \<CR><CR>
-      \@pre ...
-      \<CR>
-      \/<Up><Up><Up><Up><Up><Up><Up>
+" iab com /**
+"       \<CR><CR>
+"       \
+"       \<CR><CR>
+"       \@param[in, out] ...
+"       \<CR><CR>
+"       \@return Returns ...
+"       \<CR><CR>
+"       \@pre ...
+"       \<CR>
+"       \/<Up><Up><Up><Up><Up><Up><Up>
 
-iabbrev #i #include
-iabbrev #d #define  
-iabbrev cslib #include "cs1010.h" 
-iabbrev mathlib #include <math.h>
-iabbrev boollib #include <stdbool.h>
-iabbrev strlib #include <string.h>
+" iabbrev #i #include
+" iabbrev #d #define  
+" iabbrev cslib #include "cs1010.h" 
+" iabbrev mathlib #include <math.h>
+" iabbrev boollib #include <stdbool.h>
+" iabbrev strlib #include <string.h>
 
-iabbrev st struct    
-iabbrev ty typedef
+" iabbrev st struct    
+" iabbrev ty typedef
 
-autocmd FileType c iabbrev cstart #include <stdio.h>
-                                     \<CR>
-                                     \#include <stdlib.h>
-                                     \<CR>
-                                     \#include <stdbool.h>
-                                     \<CR>
-                                     \<CR>
-                                     \int main() {
-                                     \<CR>
-                                     \  printf("hello\n");
-                                     \<CR>
-                                     \  return 0;
-                                     \<CR>
-                                     \}
+" autocmd FileType c iabbrev cstart #include <stdio.h>
+"                                      \<CR>
+"                                      \#include <stdlib.h>
+"                                      \<CR>
+"                                      \#include <stdbool.h>
+"                                      \<CR>
+"                                      \<CR>
+"                                      \int main() {
+"                                      \<CR>
+"                                      \  printf("hello\n");
+"                                      \<CR>
+"                                      \  return 0;
+"                                      \<CR>
+"                                      \}
 
-iabbrev forti for (size_t i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
-iabbrev forli for (long i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+" iabbrev forti for (size_t i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+" iabbrev forli for (long i = 0; i < NUM; i += 1) {<CR><CR>}<Esc>?NUM<CR>cw
 
-iabbrev fortj for (size_t j = 0; j < NUM; j += 1) {<CR><CR>}<Esc>?NUM<CR>cw
-iabbrev forlj for (long j = 0; j < NUM; j += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+" iabbrev fortj for (size_t j = 0; j < NUM; j += 1) {<CR><CR>}<Esc>?NUM<CR>cw
+" iabbrev forlj for (long j = 0; j < NUM; j += 1) {<CR><CR>}<Esc>?NUM<CR>cw
 
 
-ab csrl cs1010_read_long(
-ab csrd cs1010_read_double(
-ab csrll cs1010_read_line(
-ab csrw cs1010_read_word(
-ab csrs_t cs1010_read_size_t(
+" ab csrl cs1010_read_long(
+" ab csrd cs1010_read_double(
+" ab csrll cs1010_read_line(
+" ab csrw cs1010_read_word(
+" ab csrs_t cs1010_read_size_t(
 
-ab csrla cs1010_read_long_array(
-ab csrda cs1010_read_double_array(
-ab csrlla cs1010_read_line_array(
-ab csrwa cs1010_read_word_array(
+" ab csrla cs1010_read_long_array(
+" ab csrda cs1010_read_double_array(
+" ab csrlla cs1010_read_line_array(
+" ab csrwa cs1010_read_word_array(
 
-ab cspld cs1010_println_double(
-ab cspll cs1010_println_long(
-ab cspls cs1010_println_string(
-ab csplp cs1010_println_pointer(
-ab cspls_t cs1010_println_size_t(
+" ab cspld cs1010_println_double(
+" ab cspll cs1010_println_long(
+" ab cspls cs1010_println_string(
+" ab csplp cs1010_println_pointer(
+" ab cspls_t cs1010_println_size_t(
 
-ab cspl cs1010_print_long(
-ab cspd cs1010_print_double(
-ab cspl cs1010_print_long(
-ab csps cs1010_print_string(
-ab cspp cs1010_print_pointer(
-ab csps_t cs1010_print_size_t(
+" ab cspl cs1010_print_long(
+" ab cspd cs1010_print_double(
+" ab cspl cs1010_print_long(
+" ab csps cs1010_print_string(
+" ab cspp cs1010_print_pointer(
+" ab csps_t cs1010_print_size_t(
 
-ab cscs cs1010_clear_screen(
+" ab cscs cs1010_clear_screen(
 
 
 
 """ NOT ALLOWED IN EXAM!!!!
 " For syntastic
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_c_checkers = [ 'clang_tidy', 'clang' ]
-let g:syntastic_c_compiler = 'clang'
-let g:syntastic_c_clang_args = '-Wall -Werror -Wextra -Iinclude'
-let g:syntastic_c_clang_tidy_args = '-checks=*'
-let g:syntastic_c_compiler_options = '-Wall -Iinclude'
-let g:syntastic_c_include_dirs = [ '../include', 'include' ]
-let g:syntastic_c_clang_tidy_post_args = ""
+" set laststatus=2
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_error_symbol = '✗'
+" let g:syntastic_warning_symbol = '⚠'
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+"
+" let g:syntastic_c_checkers = [ 'clang_tidy', 'clang' ]
+" let g:syntastic_c_compiler = 'clang'
+" let g:syntastic_c_clang_args = '-Wall -Werror -Wextra -Iinclude'
+" let g:syntastic_c_clang_tidy_args = '-checks=*'
+" let g:syntastic_c_compiler_options = '-Wall -Iinclude'
+" let g:syntastic_c_include_dirs = [ '../include', 'include' ]
+" let g:syntastic_c_clang_tidy_post_args = ""
 
 
 
