@@ -1,2 +1,3 @@
-# vimrc-nus
-My Vim Config for Raspberry Pi
+# Dotfile Light
+
+Only the minimum config file for speed
