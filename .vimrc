@@ -17,7 +17,7 @@ let mapleader = ' '
 "" Initialize plugin system
 " call plug#end()
 
-colorscheme retrobox
+colorscheme koehler
 " Set regular expression engine automatically
 set regexpengine=0
 
