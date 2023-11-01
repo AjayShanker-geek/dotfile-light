@@ -1,3 +1,3 @@
 # Dotfile Light
 
-Only the minimum config file for speed
+🚀 Only the minimum config file for speed
