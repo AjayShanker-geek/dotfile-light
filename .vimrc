@@ -23,6 +23,7 @@ set regexpengine=0
 
 set t_Co=256 
 " set relativenumber
+set number
 set background=dark
 
 " Ignore case when searching
