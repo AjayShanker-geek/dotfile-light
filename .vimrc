@@ -17,12 +17,12 @@ let mapleader = ' '
 "" Initialize plugin system
 " call plug#end()
 
-colorscheme koehler
+colorscheme delek
 " Set regular expression engine automatically
 set regexpengine=0
 
 set t_Co=256 
-set relativenumber
+" set relativenumber
 set background=dark
 
 " Ignore case when searching
